@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EPEP Point — aplikasi skor turnamen Android, versi web gratis, dan komunitas WhatsApp Tekno Ogi."
+    />
+    <title>EPEP Point · Informasi &amp; Tautan Resmi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=Outfit:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-deep: #070a12;
+        --bg-card: rgba(15, 20, 35, 0.72);
+        --stroke: rgba(148, 163, 184, 0.18);
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --gold: #fbbf24;
+        --gold-mid: #f59e0b;
+        --emerald: #34d399;
+        --whatsapp: #25d366;
+        --radius: 20px;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+        --font-display: "Outfit", var(--font-sans);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--bg-deep);
+        background-image:
+          radial-gradient(ellipse 900px 500px at 12% -8%, rgba(251, 191, 36, 0.14), transparent 55%),
+          radial-gradient(ellipse 700px 420px at 92% 8%, rgba(245, 158, 11, 0.1), transparent 50%),
+          radial-gradient(ellipse 600px 380px at 50% 105%, rgba(52, 211, 153, 0.06), transparent 55%),
+          linear-gradient(180deg, #070a12 0%, #0b1020 50%, #070a12 100%);
+        background-attachment: fixed;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+        padding: 28px 20px 56px;
+      }
+
+      /* Header */
+      .top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 40px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand__mark {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-mid));
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 15px;
+        color: #0f172a;
+        letter-spacing: -0.03em;
+        box-shadow: 0 8px 28px rgba(251, 191, 36, 0.35);
+      }
+
+      .brand__text strong {
+        display: block;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.15rem;
+        letter-spacing: -0.02em;
+      }
+
+      .brand__text span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .top__pill {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--stroke);
+        background: rgba(15, 23, 42, 0.5);
+        color: var(--muted);
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto 48px;
+      }
+
+      .hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+      }
+
+      .hero__eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(2rem, 5vw, 3.1rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin: 0 0 16px;
+        background: linear-gradient(180deg, #fff 0%, #e2e8f0 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(15px, 2vw, 17px);
+        max-width: 560px;
+        margin-inline: auto;
+      }
+
+      /* Grid cards */
+      .grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 28px;
+      }
+
+      @media (max-width: 960px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        position: relative;
+        border-radius: var(--radius);
+        padding: 26px 24px;
+        background: var(--bg-card);
+        border: 1px solid var(--stroke);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        overflow: hidden;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(500px 200px at 20% 0%, rgba(251, 191, 36, 0.08), transparent 70%);
+        pointer-events: none;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(251, 191, 36, 0.28);
+        box-shadow: 0 32px 90px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(251, 191, 36, 0.12);
+      }
+
+      .card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .card__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 6px 10px;
+        border-radius: 8px;
+        margin-bottom: 14px;
+      }
+
+      .card__tag--gold {
+        background: rgba(251, 191, 36, 0.15);
+        color: var(--gold);
+        border: 1px solid rgba(251, 191, 36, 0.25);
+      }
+
+      .card__tag--free {
+        background: rgba(52, 211, 153, 0.12);
+        color: var(--emerald);
+        border: 1px solid rgba(52, 211, 153, 0.22);
+      }
+
+      .card__tag--wa {
+        background: rgba(37, 211, 102, 0.12);
+        color: #4ade80;
+        border: 1px solid rgba(37, 211, 102, 0.22);
+      }
+
+      .card h2 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.35rem;
+        letter-spacing: -0.02em;
+        margin: 0 0 10px;
+      }
+
+      .card p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .card .note {
+        margin: 0 0 18px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.65);
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        font-size: 13px;
+        color: #cbd5e1;
+        line-height: 1.55;
+      }
+
+      .card .note strong {
+        color: var(--gold);
+        font-weight: 700;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 14px;
+        font-family: var(--font-sans);
+        font-weight: 700;
+        font-size: 14px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .btn--primary {
+        background: linear-gradient(135deg, var(--gold), var(--gold-mid));
+        color: #0f172a;
+        box-shadow: 0 10px 32px rgba(251, 191, 36, 0.28);
+      }
+
+      .btn--primary:hover {
+        filter: brightness(1.06);
+      }
+
+      .btn--secondary {
+        background: rgba(30, 41, 59, 0.7);
+        color: var(--text);
+        border: 1px solid var(--stroke);
+        margin-top: 10px;
+      }
+
+      .btn--secondary:hover {
+        border-color: rgba(52, 211, 153, 0.35);
+        background: rgba(30, 41, 59, 0.9);
+      }
+
+      .btn--wa {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #fff;
+        box-shadow: 0 10px 32px rgba(34, 197, 94, 0.25);
+      }
+
+      .btn--wa:hover {
+        filter: brightness(1.05);
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn-row .btn {
+        width: auto;
+        flex: 1 1 auto;
+        min-width: 120px;
+      }
+
+      @media (max-width: 520px) {
+        .btn-row .btn {
+          width: 100%;
+        }
+      }
+
+      .btn--compact {
+        margin: 0;
+        padding: 10px 14px;
+        font-size: 12px;
+        width: auto;
+        flex: 0 0 auto;
+      }
+
+      .wa-card__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+      }
+
+      .wa-card__actions > a:first-of-type {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      /* WA section */
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 44px 0 20px;
+      }
+
+      .section-head h2 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.35rem, 3vw, 1.75rem);
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        max-width: 420px;
+      }
+
+      .wa-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 900px) {
+        .wa-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .wa-card {
+        border-radius: var(--radius);
+        padding: 22px 20px;
+        background: rgba(10, 15, 28, 0.75);
+        border: 1px solid rgba(37, 211, 102, 0.18);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .wa-card:hover {
+        border-color: rgba(37, 211, 102, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .wa-card__icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: rgba(37, 211, 102, 0.15);
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+      }
+
+      .wa-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .wa-card p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+        flex: 1 1 auto;
+      }
+
+      .wa-card a {
+        font-size: 13px;
+        font-weight: 700;
+        color: #4ade80;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .wa-card a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      .foot {
+        margin-top: 48px;
+        padding-top: 28px;
+        border-top: 1px solid var(--stroke);
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .foot a {
+        color: var(--gold);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .foot a:hover {
+        text-decoration: underline;
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 22px;
+        transform: translateX(-50%) translateY(8px);
+        padding: 12px 18px;
+        border-radius: 12px;
+        background: rgba(15, 23, 42, 0.95);
+        border: 1px solid var(--stroke);
+        color: var(--text);
+        font-weight: 700;
+        font-size: 13px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        z-index: 100;
+      }
+
+      .toast.is-visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="brand__mark" aria-hidden="true">EP</div>
+          <div class="brand__text">
+            <strong>EPEP Point</strong>
+            <span>Informasi resmi &amp; tautan terpadu</span>
+          </div>
+        </div>
+        <div class="top__pill">Tekno Ogi</div>
+      </header>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="hero__eyebrow">Pusat informasi</p>
+        <h1 id="hero-title">Skor turnamen, web gratis, &amp; komunitas — satu halaman.</h1>
+        <p>
+          Pilih versi yang sesuai kebutuhanmu: aplikasi Android lengkap (berbayar) dengan fitur lanjutan, atau akses web
+          gratis. Gabung juga ke channel dan grup WhatsApp untuk update.
+        </p>
+      </section>
+
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <span class="card__tag card__tag--gold">Berbayar · Android</span>
+          <h2>Aplikasi mobile</h2>
+          <p>
+            EPEP Point Lite untuk skoring turnamen, poster, sertifikat, dan alur kerja turnamen di perangkat Android.
+          </p>
+          <div class="note" role="note">
+            <strong>Update mendatang:</strong> pemindaian screenshot hasil <em>Fast Turnamen</em> akan dihitung otomatis.
+            Pastikan <strong>email</strong> atau <strong>nomor WhatsApp</strong> yang kamu daftarkan aktif — info update
+            akan dikirim ke kontak tersebut.
+          </div>
+          <a
+            class="btn btn--primary"
+            href="https://teknoogi.myr.id/catalog/epep-point-lite-android-skoring-turnamen-poster-sertifikat"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buka katalog &amp; beli
+          </a>
+          <button
+            class="btn btn--secondary"
+            type="button"
+            data-copy="https://teknoogi.myr.id/catalog/epep-point-lite-android-skoring-turnamen-poster-sertifikat"
+          >
+            Salin link katalog
+          </button>
+        </article>
+
+        <article class="card" role="listitem">
+          <span class="card__tag card__tag--free">Gratis · Web</span>
+          <h2>Versi web</h2>
+          <p>
+            Butuh akses cepat tanpa install? Gunakan layanan web gratis untuk kebutuhan dasar turnamen dan squad.
+          </p>
+          <a class="btn btn--secondary" href="https://ft-epep-squad.web.id/" target="_blank" rel="noopener noreferrer">
+            Buka ft-epep-squad.web.id
+          </a>
+          <button class="btn btn--secondary" type="button" data-copy="https://ft-epep-squad.web.id/">
+            Salin link web
+          </button>
+        </article>
+
+        <article class="card" role="listitem">
+          <span class="card__tag card__tag--wa">Komunitas</span>
+          <h2>WhatsApp</h2>
+          <p>Channel resmi, grup diskusi, dan komunitas untuk berbagi info serta bantuan.</p>
+          <div class="btn-row">
+            <a
+              class="btn btn--wa"
+              href="https://www.whatsapp.com/channel/0029VbCZBikLdQeXdQJHdH2P"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Channel
+            </a>
+            <a
+              class="btn btn--wa"
+              href="https://chat.whatsapp.com/Jm8bvFtXT80516snciC8g8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Grup
+            </a>
+          </div>
+          <a
+            class="btn btn--secondary"
+            href="https://chat.whatsapp.com/L75xKqHollb8pBjf1Kb0OD"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Komunitas Tekno Ogi
+          </a>
+        </article>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>Detail tautan WhatsApp</h2>
+          <p>Salin atau buka langsung di aplikasi WhatsApp kamu.</p>
+        </div>
+      </div>
+
+      <div class="wa-grid">
+        <div class="wa-card">
+          <div class="wa-card__icon" aria-hidden="true">📢</div>
+          <h3>Channel WA</h3>
+          <p>Siaran resmi TEKNO OGI — pengumuman dan update produk.</p>
+          <div class="wa-card__actions">
+            <a href="https://www.whatsapp.com/channel/0029VbCZBikLdQeXdQJHdH2P" target="_blank" rel="noopener noreferrer">
+              Buka channel →
+            </a>
+            <button
+              class="btn btn--secondary btn--compact"
+              type="button"
+              data-copy="https://www.whatsapp.com/channel/0029VbCZBikLdQeXdQJHdH2P"
+            >
+              Salin
+            </button>
+          </div>
+        </div>
+        <div class="wa-card">
+          <div class="wa-card__icon" aria-hidden="true">👥</div>
+          <h3>Grup WA</h3>
+          <p>Grup Free Fire Point untuk obrolan dan koordinasi cepat.</p>
+          <div class="wa-card__actions">
+            <a href="https://chat.whatsapp.com/Jm8bvFtXT80516snciC8g8" target="_blank" rel="noopener noreferrer">
+              Gabung grup →
+            </a>
+            <button
+              class="btn btn--secondary btn--compact"
+              type="button"
+              data-copy="https://chat.whatsapp.com/Jm8bvFtXT80516snciC8g8"
+            >
+              Salin
+            </button>
+          </div>
+        </div>
+        <div class="wa-card">
+          <div class="wa-card__icon" aria-hidden="true">🏠</div>
+          <h3>Komunitas WA</h3>
+          <p>Komunitas Tekno Ogi — ruang lebih luas untuk member dan diskusi.</p>
+          <div class="wa-card__actions">
+            <a href="https://chat.whatsapp.com/L75xKqHollb8pBjf1Kb0OD" target="_blank" rel="noopener noreferrer">
+              Gabung komunitas →
+            </a>
+            <button
+              class="btn btn--secondary btn--compact"
+              type="button"
+              data-copy="https://chat.whatsapp.com/L75xKqHollb8pBjf1Kb0OD"
+            >
+              Salin
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="foot">
+        <p>
+          <span id="year"></span> · EPEP Point ·
+          <a
+            href="https://teknoogi.myr.id/catalog/epep-point-lite-android-skoring-turnamen-poster-sertifikat"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Tekno Ogi</a>
+        </p>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+    <script>
+      const toast = document.getElementById("toast");
+      const year = document.getElementById("year");
+      if (year) year.textContent = String(new Date().getFullYear());
+
+      let toastTimer;
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2000);
+      }
+
+      async function copyText(text) {
+        const value = String(text || "").trim();
+        if (!value) return false;
+        if (navigator.clipboard && window.isSecureContext) {
+          try {
+            await navigator.clipboard.writeText(value);
+            return true;
+          } catch {
+            return false;
+          }
+        }
+        const ta = document.createElement("textarea");
+        ta.value = value;
+        ta.setAttribute("readonly", "true");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try {
+          ok = document.execCommand("copy");
+        } catch {
+          ok = false;
+        }
+        document.body.removeChild(ta);
+        return ok;
+      }
+
+      document.addEventListener("click", async (e) => {
+        const t = e.target instanceof Element ? e.target.closest("[data-copy]") : null;
+        if (!t) return;
+        e.preventDefault();
+        const ok = await copyText(t.getAttribute("data-copy"));
+        showToast(ok ? "Tautan disalin" : "Gagal menyalin");
+      });
+    </script>
+  </body>
+</html>
